@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask import send_from_directory
 
 app = Flask(__name__)
 
@@ -27,6 +28,12 @@ def webhook():
 @app.route("/")
 def home():
     return "Webhook is running ✅"
+
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return send_from_directory("static", "success_app_privacy_policy.pdf")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
