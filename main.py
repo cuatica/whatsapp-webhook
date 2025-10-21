@@ -10,6 +10,7 @@ PHONE_NUMBER_ID = "883020854886533"
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     if request.method == "GET":
+        print("📩 Incoming GET webhook")
         # ✅ This is what Meta calls during verification
         mode = request.args.get("hub.mode")
         token = request.args.get("hub.verify_token")
@@ -23,7 +24,7 @@ def webhook():
 
     elif request.method == "POST":
         data = request.get_json()
-        print("📩 Incoming webhook:", data)
+        print("📩 Incoming POST webhook:", data)
         return "OK", 200
 
 
