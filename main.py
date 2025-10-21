@@ -21,10 +21,14 @@ def webhook():
         else:
             return "Verification token mismatch", 403
 
-
     elif request.method == "POST":
-        data = request.get_json()
-        print("📩 Incoming POST webhook:", data)
+        try:
+            data = request.get_json(force=True, silent=True)
+            print("✅ Raw data received:", data)
+        except Exception as e:
+            print("❌ Failed to parse JSON:", e)
+        print("✅ Headers:", dict(request.headers))
+        print("✅ Body (raw):", request.data)
         return "OK", 200
 
 
