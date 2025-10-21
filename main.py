@@ -20,10 +20,12 @@ def webhook():
         else:
             return "Verification token mismatch", 403
 
+
     elif request.method == "POST":
-        # ✅ Meta sends actual message notifications here
-        print(request.json)
+        data = request.get_json()
+        print("📩 Incoming webhook:", data)
         return "OK", 200
+
 
 @app.route("/")
 def home():
